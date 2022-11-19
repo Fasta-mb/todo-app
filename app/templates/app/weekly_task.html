@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="container">
+        <div class="mini-container">
+            <form method="POST" class="fl">
+                {% csrf_token %}
+            
+                {% comment %} <h1 class="text-white text-center todo">My Todos</h1> {% endcomment %}
+                
+                <div class='wee'>
+                    <h2 class="wee-text">Weekly Todo</h2>
+                    <a href="{% url 'home' %}" class="btn-weekly">Daily</a>
+                </div>
+                <div class="centered">
+    
+                   
+                    
+                    {% for form in forms %}
+                    
+                    {% if form.type == 'weekly' %}
+                            <div class="card">
+                                <div class="title-date">
+                                    <p class="title">{{form.text | title}}</p>
+                                    <h5 class="date">{{form.date|timesince}} ago</h5>
+                                </div>
+                                {% comment %} <h5>{{form.type | title}}</h5> {% endcomment %}
+                                
+                                <div class='update-delete'>
+                                    <a class="update" href="{% url 'update' form.id %}">Update</a>
+                                    <a class="delete" href="{% url 'delete' form.id %}">Delete</a>
+                                </div>
+                        
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    
+    
+                </div>
+                <div class="mid">
+                    <div>
+                        {% for form in todoforms %}
+                
+                            {{form}}
+                        {% endfor %}
+                    </div>
+                    
+                    <button class="btn" type="submit">Save</button>
+                    
+                </div>
+    
+            
+    
+            </form>
+        </div>
+    </section>
+    
+
+{% endblock content %}
