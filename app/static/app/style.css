@@ -219,6 +219,8 @@ body {
     backdrop-filter: blur(25px);
     background-color: #FFFFFF00;
     margin-right: .7rem;
+    font-size: 17px;
+    color: rgb(8, 25, 39);
 
 
 }

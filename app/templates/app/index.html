@@ -21,7 +21,7 @@
                     {% if form.type == 'daily' %}
                         <div class="card">
                             <div class="title-date">
-                                <p class="title">{{form.text | title}}</p>
+                                <p class="title">{{form.text | capfirst}}</p>
                                 <h5 class="date">{{form.date|timesince}} ago</h5>
                             </div>
                             {% comment %} <h5>{{form.type | title}}</h5> {% endcomment %}

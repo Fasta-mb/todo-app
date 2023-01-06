@@ -12,11 +12,16 @@ def index(request):
     forms = Todo.objects.all().order_by('-date')
     todoforms = TodoForm()
     if request.POST:
-        forms = TodoForm(request.POST)
-        if forms.is_valid():
-            forms.save()
+        todoforms = TodoForm(request.POST)
+        if todoforms.is_valid():
+            todoforms.save()
+            for form in forms:
+                if form.type == 'weekly':
+                    return redirect(reverse('weekly-task'))
+                else:
+                    return redirect(reverse('home'))
+                
             
-            return HttpResponseRedirect(reverse('home'))
     context = {'todoforms': todoforms, 'forms': forms}
     
     return render(request, 'app/index.html', context)
@@ -41,10 +46,14 @@ def weekly_task(request):
     forms = Todo.objects.all().order_by('-date')
     todoforms = TodoForm()
     if request.POST:
-        forms = TodoForm(request.POST)
-        if forms.is_valid():
-            forms.save()
+        todoforms = TodoForm(request.POST)
+        if todoforms.is_valid():
+            todoforms.save()
+            for form in forms:
+                if form.type == 'daily':
+                    return redirect(reverse('home'))
+                else:
+                    return redirect(reverse('weekly-task'))
             
-            return HttpResponseRedirect(reverse('weekly-task'))
     context = {'todoforms': todoforms, 'forms': forms}
     return render(request, 'app/weekly_task.html', context)
