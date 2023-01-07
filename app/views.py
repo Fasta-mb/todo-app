@@ -36,9 +36,9 @@ def updateTodo(request, id):
     form = Todo.objects.get(id=id)
     todoforms = TodoForm(instance=form)
     if request.method == 'POST':
-        forms = TodoForm(request.POST, instance=form)
-        if forms.is_valid():
-            forms.save()
+        todoforms = TodoForm(request.POST, instance=form)
+        if todoforms.is_valid():
+            todoforms.save()
             return redirect('home')
     return render(request, 'app/index.html', {'todoforms': todoforms})
 
