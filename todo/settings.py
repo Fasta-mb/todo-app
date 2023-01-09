@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-aqqd98cr@*0@w_p8p1xgu_$dk$$*h_xb@vfacqrc=*w!@(ntd5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['todo-app-production-968c.up.railway.app']
 
 # set up path for base.html
 
