@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aqqd98cr@*0@w_p8p1xgu_$dk$$*h_xb@vfacqrc=*w!@(ntd5'
+SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-aqqd98cr@*0@w_p8p1xgu_$dk$$*h_xb@vfacqrc=*w!@(ntd5') 
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("IS_DEVELOPMENT", True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv('APP_HOST'), '127.0.0.1']
 
 # set up path for base.html
 
@@ -131,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
